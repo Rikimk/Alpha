@@ -14,6 +14,9 @@ from .decorators import unauthenticated_user
 
 # Create your views here.
 
+def homePage(request):
+    return render(request, 'home.html')
+
 def index(request):
     num_of_albums = Album.objects.all().count()
     num_of_artists = Artist.objects.all().count()
@@ -75,4 +78,4 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
