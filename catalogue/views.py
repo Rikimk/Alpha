@@ -13,7 +13,7 @@ from django.contrib import messages
 from .decorators import unauthenticated_user
 
 # Create your views here.
-
+@unauthenticated_user
 def homePage(request):
     return render(request, 'home.html')
 
