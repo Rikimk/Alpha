@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Album, Artist, Language, Genre, Band, Role
+from .models import Album, Artist, Language, Genre, Band, Profile, Role
 # Register your models here.
 
 admin.site.register(Album)
@@ -8,3 +8,4 @@ admin.site.register(Language)
 admin.site.register(Genre)
 admin.site.register(Band)
 admin.site.register(Role)
+admin.site.register(Profile)
