@@ -70,7 +70,7 @@ class Album(models.Model):
     language = models.ForeignKey('Language',on_delete=models.RESTRICT)
     num_of_songs = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField(null=True,blank=True)
+    image = models.ImageField(default='default.jpg', upload_to='album_pics')
 
     def __str__(self):
         return f'{self.name} by {self.author or self.band}'
