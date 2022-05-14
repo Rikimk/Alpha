@@ -18,12 +18,16 @@
           font-weight: 500;
           background-color: red;
         }
-        </style>
+        .btn-div {
+          height: 40vh;
+        }
+
+    </style>
 </head>
 <body>
-  <div class="d-grid gap-3 col-4 mx-auto">
-    <a class="btn btn-danger" href="{% url 'login' %}" type="submit">Login</a>
-    <a class="btn btn-danger" href="{% url 'signup' %}" type="submit">Don't have an account? Sign Up!</a>
+  <div class="d-flex flex-column justify-content-end gap-4 col-4 mx-auto btn-div">
+    <a class="btn btn-danger d-flex justify-content-center" href="{% url 'login' %}" type="submit">Login</a>
+    <a class="btn btn-danger d-flex justify-content-center" href="{% url 'signup' %}" type="submit">Don't have an account? Sign Up!</a>
   </div>
     <div> </div>
     
