@@ -79,10 +79,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'alphasql',
-        'USER': 'root',
-        'PASSWORD': 'hristijancrifp7454',
-        'HOST': '127.0.0.1',
+        'USER': 'linroot',
+        'PASSWORD': '!4oid1HzTvGZpR2a',
+        'HOST': 'lin-2720-2808-mysql-primary.servers.linodedb.net',
         'PORT': '3306',
+        'OPTIONS': {'ssl': {'ssl-ca': 'alpha-db-ca-certificate.crt'}},
     }
 }
 
