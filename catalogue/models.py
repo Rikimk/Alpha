@@ -1,9 +1,18 @@
+from email.policy import default
 from tkinter import E
 from unicodedata import name
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
 
 class Genre(models.Model):
     name = models.CharField(max_length=50)
@@ -61,7 +70,7 @@ class Album(models.Model):
     language = models.ForeignKey('Language',on_delete=models.RESTRICT)
     num_of_songs = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField(null=True,blank=True)
+    image = models.ImageField(default='default.jpg', upload_to='album_pics')
 
     def __str__(self):
         return f'{self.name} by {self.author or self.band}'
