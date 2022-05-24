@@ -52,6 +52,7 @@ class Band(models.Model):
     date_formed = models.DateField()
     members = models.ManyToManyField(Artist)
     genre = models.ManyToManyField(Genre)
+    image = models.ImageField(default='default.jpg', upload_to='band_pics')
 
     def get_absolute_url(self):
         return reverse("band_detail", kwargs={"pk": self.pk})

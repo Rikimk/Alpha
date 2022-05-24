@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView
 
 from .forms import CreateUserForm
-from .models import Album, Artist, Language, Genre
+from .models import Album, Artist, Language, Genre, Band
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -37,8 +37,16 @@ class AlbumListView(ListView):
     queryset = Album.objects.order_by('name')
     context_object_name = 'album_list'
 
+class BandListView(ListView):
+    model = Band
+    queryset = Band.objects.order_by('name')
+    context_object_name = 'band_list'
+
 class AlbumDetail(DetailView):
     model = Album
+
+class BandDetail(DetailView):
+    model = Band
 
 @login_required(login_url='login')
 def my_view(request):
