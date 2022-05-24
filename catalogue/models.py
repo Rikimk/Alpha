@@ -45,7 +45,7 @@ class Artist(models.Model):
         return reverse("artist_detail", kwargs={"pk": self.pk})
     
     def __str__(self):
-        return f'{self.first_name} "{self.nickname}" {self.last_name}'
+        return f'{self.first_name} {self.last_name}'
 
 class Band(models.Model):
     name = models.CharField(max_length=100)
