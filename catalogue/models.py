@@ -39,6 +39,7 @@ class Artist(models.Model):
     role = models.ManyToManyField(Role)
     date_of_birth = models.DateField()
     date_of_death = models.DateField(blank=True,null=True)
+    image = models.ImageField(default='default.jpg', upload_to='artist_pics')
 
 
     def get_absolute_url(self):

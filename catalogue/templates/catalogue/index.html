@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
-</head>
-<body>
-    {% block content %}
 
+{% block content %}
+<style>
+    body {
+          background-image: url("{% static 'images/noice.jpg' %}");
+        }
+
+    h1,ul {
+        text-align: center;
+        list-style-type: none;
+    }
+</style>
     <h1>Welcome to the Catalogue Page</h1>
-    <a href="{% url "catalogue:list_album" %}">List of Albums</a>
-    <a href="{% url "catalogue:list_band" %}">List of Bands</a>    
+    <ul>
+    <li><a class="text-danger" href="{% url 'catalogue:list_album' %}">List of Albums</a></li>
+    <li><a class="text-danger" href="{% url 'catalogue:list_band' %}">List of Bands</a></li>
+    </ul>  
 
     {% endblock  %}
-</body>
-</html>

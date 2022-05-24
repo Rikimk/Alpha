@@ -48,6 +48,9 @@ class AlbumDetail(DetailView):
 class BandDetail(DetailView):
     model = Band
 
+class ArtistDetail(DetailView):
+    model = Artist
+
 @login_required(login_url='login')
 def my_view(request):
     return render(request, 'catalogue/my_view.html')
