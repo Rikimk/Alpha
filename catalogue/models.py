@@ -39,19 +39,21 @@ class Artist(models.Model):
     role = models.ManyToManyField(Role)
     date_of_birth = models.DateField()
     date_of_death = models.DateField(blank=True,null=True)
+    image = models.ImageField(default='default.jpg', upload_to='artist_pics')
 
 
     def get_absolute_url(self):
         return reverse("artist_detail", kwargs={"pk": self.pk})
     
     def __str__(self):
-        return f'{self.first_name} "{self.nickname}" {self.last_name}'
+        return f'{self.first_name} {self.last_name}'
 
 class Band(models.Model):
     name = models.CharField(max_length=100)
     date_formed = models.DateField()
     members = models.ManyToManyField(Artist)
     genre = models.ManyToManyField(Genre)
+    image = models.ImageField(default='default.jpg', upload_to='band_pics')
 
     def get_absolute_url(self):
         return reverse("band_detail", kwargs={"pk": self.pk})

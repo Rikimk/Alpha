@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    h1,ul {
+        text-align: center;
+        list-style-type: none;
+    }
+    
+    
+</style>
+    <h1>{{band}}</h1>
+    <ul>
+        {% for artist in band.members.all %}
+        <li><a href="/catalogue/artist_detail/{{artist.id}}">{{artist}}</a></li>
+        {% endfor %}
+    </ul>
+        <img class='mx-auto d-block' height="50%" width="50%" src="{{ band.image.url }}" alt="">
+
+{% endblock %}

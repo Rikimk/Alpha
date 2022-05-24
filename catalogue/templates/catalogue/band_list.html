@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    h1{
+        text-align: center;
+    }
+
+    ul{
+        text-align: center;
+        list-style-type: none;
+        }
+</style>
+<h1>List of all the Bands</h1>
+<ul>
+{% for band in band_list%}
+<li><a href="/catalogue/band_detail/{{band.id}}">{{band.name}}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
