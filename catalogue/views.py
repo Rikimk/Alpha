@@ -28,9 +28,15 @@ def index(request):
 
     return render(request,'catalogue/index.html',context=context)
 
-class AlbumCreate(LoginRequiredMixin,CreateView):
+class AlbumCreateArtist(LoginRequiredMixin,CreateView):
     model = Album
-    fields = '__all__'
+    template_name = 'catalogue/album_form_artist.html'
+    fields = ['name','author','genre','release_date','language','num_of_songs','price','image']
+
+class AlbumCreateBand(LoginRequiredMixin,CreateView):
+    model = Album
+    template_name = 'catalogue/album_form_band.html'
+    fields = ['name','band','genre','release_date','language','num_of_songs','price','image']
 
 class AlbumListView(ListView):
     model = Album
