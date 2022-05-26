@@ -42,6 +42,11 @@ class BandListView(ListView):
     queryset = Band.objects.order_by('name')
     context_object_name = 'band_list'
 
+class ArtistListView(ListView):
+    model = Artist
+    queryset = Artist.objects.order_by('first_name')
+    context_object_name = 'artist_list'
+
 class AlbumDetail(DetailView):
     model = Album
 
