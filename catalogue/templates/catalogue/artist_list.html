@@ -6,7 +6,7 @@
 <style>
     h1{
         text-align: center;
-        color: rgb(185, 0, 0);
+        color: rgb(255, 255, 255);
     }
 
     ul{
@@ -17,7 +17,7 @@
 <h1>List of all the Artists</h1>
 <ul>
 {% for artist in artist_list%}
-<li><a class="text-danger" href="/catalogue/artist_detail/{{artist.id}}">{{artist}}</a></li>
+<li><a class="text-light" href="/catalogue/artist_detail/{{artist.id}}">{{artist}}</a></li>
 {% endfor %}
 </ul>
 

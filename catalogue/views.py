@@ -28,6 +28,18 @@ def index(request):
 
     return render(request,'catalogue/index.html',context=context)
 
+class ArtistCreate(CreateView):
+    model = Artist
+    fields = '__all__'
+
+class BandCreate(CreateView):
+    model = Band
+    fields = '__all__'
+
+class GenreCreate(CreateView):
+    model = Genre
+    fields = '__all__'
+
 class AlbumCreateArtist(LoginRequiredMixin,CreateView):
     model = Album
     template_name = 'catalogue/album_form_artist.html'
