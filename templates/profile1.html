@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+<style>
+  .account-heading {
+    color: rgb(255, 255, 255);
+  }
+</style>
+<h1>My Account</h1>
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" height="200" width="200">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+<table>
+  <td><a class="text-light mx-2" href="{% url 'catalogue:artist_create' %}">Add an Artist</a></td>
+  <td><a class="text-light mx-2" href="{% url 'catalogue:band_create' %}">Add a Band</a></td>
+  <td><a class="text-light mx-2" href="{% url 'catalogue:genre_create' %}">Add a Genre</a></td>
+</table>
+<table>
+  <td><a class="text-light mx-2" href="{% url 'catalogue:album_create_band' %}">Add a Band Album</a></td>
+  <td><a class="text-light mx-2" href="{% url 'catalogue:album_create_artist' %}">Add a Solo Album</a></td>
+</table>
+    
+{% endblock %}

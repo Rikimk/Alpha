@@ -8,11 +8,21 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Profile(models.Model):
+    id = User.pk
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    first_name = models.CharField(max_length=50,default='John')
+    last_name = models.CharField(max_length=50,default='Doe')
+    website = models.CharField(max_length=50,default='None')
+    github = models.CharField(max_length=50,default='None')
+    twitter = models.CharField(max_length=50,default='None')
+    instagram = models.CharField(max_length=50,default='None')
+    facebook = models.CharField(max_length=50,default='None')
+    address = models.CharField(max_length=50,default='None')
+
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return self.user.username
 
 class Genre(models.Model):
     name = models.CharField(max_length=50)

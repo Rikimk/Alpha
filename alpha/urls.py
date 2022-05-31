@@ -19,6 +19,8 @@ from django.views.generic import RedirectView
 from catalogue.views import loginPage, logoutUser, registerPage, homePage, profile
 from django.conf import settings
 from django.conf.urls.static import static
+from catalogue.views import ProfileUpdate
+from catalogue import models
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +29,8 @@ urlpatterns = [
     path('signup/',registerPage,name='signup'),
     path('login/',loginPage, name='login'),
     path('logout/',logoutUser, name='logout'),
-    path('accounts/profile/', profile, name='profile'),
+    path('accounts/profile/<str:username>/', profile, name='profile'),
+    path('accounts/edit_profile/{{Profile.id}}',ProfileUpdate.as_view(), name='edit_profile'),
 ]
 
 

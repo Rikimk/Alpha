@@ -27,7 +27,7 @@
         <a class="text-light mx-2" href="{% url 'catalogue:index' %}">Catalogue</a>
         <form class="form-inline my-2 my-lg-0">
         {% if user.is_authenticated %}
-        <a class="navbar-brand" href="{% url 'profile' %}">
+        <a class="navbar-brand" href="{% url 'profile' username=request.user.username %}">{{ user.username }}
             <img src="{{ user.profile.image.url }}" width="30" height="30" class="rounded-circle" alt="">
         </a>
         <a class="text-danger mx-2" href="{% url 'logout' %}">Logout</a>
