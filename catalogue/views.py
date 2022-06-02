@@ -1,10 +1,10 @@
 from typing import List
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
 
 from .forms import CreateUserForm
-from .models import Album, Artist, Language, Genre, Band
+from .models import Album, Artist, Language, Genre, Band, Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -27,6 +27,19 @@ def index(request):
     }
 
     return render(request,'catalogue/index.html',context=context)
+
+
+class ArtistCreate(CreateView):
+    model = Artist
+    fields = '__all__'
+
+class BandCreate(LoginRequiredMixin,CreateView):
+    model = Band
+    fields = '__all__'
+
+class GenreCreate(LoginRequiredMixin,CreateView):
+    model = Genre
+    fields = '__all__'
 
 class AlbumCreateArtist(LoginRequiredMixin,CreateView):
     model = Album
@@ -61,6 +74,7 @@ class BandDetail(DetailView):
 
 class ArtistDetail(DetailView):
     model = Artist
+
 
 @login_required(login_url='login')
 def my_view(request):

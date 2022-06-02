@@ -6,7 +6,7 @@
 <style>
     h1{
         text-align: center;
-        color: rgb(185, 0, 0);
+        color: white;
     }
 
     ul{
@@ -17,7 +17,7 @@
 <h1>List of all the Bands</h1>
 <ul>
 {% for band in band_list%}
-<li><a class="text-danger" href="/catalogue/band_detail/{{band.id}}">{{band.name}}</a></li>
+<li><a class="text-light" href="/catalogue/band_detail/{{band.id}}">{{band.name}}</a></li>
 {% endfor %}
 </ul>
 

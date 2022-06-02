@@ -4,13 +4,10 @@
 {% block content %}
 
 <style>
-    body {
-          background-image: url("{% static 'images/noice2.jpg' %}");
-        }
 
     h1{
         text-align: center;
-        color: rgb(185, 0, 0);
+        color: white;
     }
 
     ul{
@@ -21,7 +18,7 @@
 <h1>List of all the Albums</h1>
 <ul>
 {% for album in album_list%}
-<li><a class="text-danger" href="/catalogue/album_detail/{{album.id}}">{{album.name}}</a></li>
+<li><a class="text-light" href="/catalogue/album_detail/{{album.id}}">{{album.name}}</a></li>
 {% endfor %}
 </ul>
 
