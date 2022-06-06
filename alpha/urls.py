@@ -28,7 +28,7 @@ urlpatterns = [
     path('login/',loginPage, name='login'),
     path('logout/',logoutUser, name='logout'),
     path('accounts/profile/', profile, name='profile'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 if settings.DEBUG:

@@ -2,23 +2,13 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/list_detail.css' %}">
 
-<style>
-    h1{
-        text-align: center;
-        color: white;
-    }
-
-    ul{
-        text-align: center;
-        list-style-type: none;
-        }
-</style>
-<h1>List of all the Artists</h1>
-<ul>
-{% for artist in artist_list%}
-<li><a class="text-light" href="/catalogue/artist_detail/{{artist.id}}">{{artist}}</a></li>
-{% endfor %}
-</ul>
+    <h1>List of all the Artists</h1>
+    <ul>
+        {% for artist in artist_list%}
+        <li><a class="text-light" href="/catalogue/artist_detail/{{artist.id}}">{{artist}}</a></li>
+        {% endfor %}
+    </ul>
 
 {% endblock %}

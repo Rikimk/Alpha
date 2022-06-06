@@ -2,24 +2,13 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/list_detail.css' %}">
 
-<style>
-
-    h1{
-        text-align: center;
-        color: white;
-    }
-
-    ul{
-        text-align: center;
-        list-style-type: none;
-        }
-</style>
 <h1>List of all the Albums</h1>
 <ul>
-{% for album in album_list%}
-<li><a class="text-light" href="/catalogue/album_detail/{{album.id}}">{{album.name}}</a></li>
-{% endfor %}
+    {% for album in album_list%}
+        <li><a class="text-light" href="/catalogue/album_detail/{{album.id}}">{{album.name}}</a></li>
+    {% endfor %}
 </ul>
 
 {% endblock %}
