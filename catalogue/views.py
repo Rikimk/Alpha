@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
 
-from .forms import CreateUserForm
+from .forms import CreateUserForm, RateForm
 from .models import Album, Artist, Language, Genre, Band, Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -119,3 +119,15 @@ def logoutUser(request):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
+def Rate(request, name):
+    album = Album.objects.get(name=Album.name)
+    user = request.user
+
+    if request.method == 'POST':
+        form = RateForm(request.POST)
+        if form.is_valid():
+            rate = form.save(commit=False)
+            rate.user = user
+            rate.album = album
+            rate.save()

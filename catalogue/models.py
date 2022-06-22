@@ -80,6 +80,26 @@ class Album(models.Model):
     def get_absolute_url(self):
         return reverse("album_detail", kwargs={"pk": self.pk})
 
+RATE_CHOICES = [
+    (1, '1 - Very Bad'),
+    (2, '2 - Bad'),
+    (3, '3 - Decent'),
+    (4, '4 - Very Good'),
+    (5, '5 - Excellent'),
+]
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    text = models.TextField(max_length=300, blank=True)
+    rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES)
+    likes = models.PositiveIntegerField(default=0)
+    dislikes = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.user.username
+
     
 
     
