@@ -3,20 +3,13 @@
 
 
 {% block content %}
-<style>
-    body {
-          background-image: url("{% static 'images/noice.jpg' %}");
-        }
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 
-    h1,ul {
-        text-align: center;
-        list-style-type: none;
-    }
-</style>
     <h1>Welcome to the Catalogue Page</h1>
-    <ul>
-    <li><a class="text-danger" href="{% url 'catalogue:list_album' %}">List of Albums</a></li>
-    <li><a class="text-danger" href="{% url 'catalogue:list_band' %}">List of Bands</a></li>
-    </ul>  
 
+    <div class="d-flex flex-row justify-content-center gap-5 col-4 mx mx-auto">
+    <a class="my-auto" href="{% url 'catalogue:list_album' %}"><img src="{% static 'images/albums.jpg' %}" height="200" width="200" alt="List of Albums"></a>
+    <a class="my-auto" href="{% url 'catalogue:list_band' %}"><img src="{% static 'images/bands.jpg' %}" height="200" width="200" alt="List of Bands"></a>
+    <a class="my-auto" href="{% url 'catalogue:list_artist' %}"><img src="{% static 'images/artists.jpg' %}" height="200" width="200" alt="List of Artists"></a>
+    </div>
     {% endblock  %}

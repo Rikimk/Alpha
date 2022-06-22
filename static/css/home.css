@@ -1,0 +1,13 @@
+body {
+    background-image: url(/static/images/tool1.jpg);
+  }
+
+  .btn {
+    color:black;
+    font-weight: 500;
+    background-color: rgb(114, 114, 114);
+    border-color: rgb(114, 114, 114);
+  }
+  .btn-div {
+    height: 40vh;
+  }

@@ -1,0 +1,12 @@
+body {
+    background-image: url(/static/images/prism.jpg)
+  }
+
+h1{
+  text-align: center;
+  list-style-type: none;
+  color: white;
+}
+div {
+  height: 80%;
+}

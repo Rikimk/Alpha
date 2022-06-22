@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<style>
-    h1 {
-        text-align: center;
-    }
-
+<link rel="stylesheet" type="text/css" href="{% static 'css/list_detail.css' %}">
     
-</style>
     <h1>{{artist}}</h1>
         <img class='mx-auto d-block' height="50%" width="50%" src="{{ artist.image.url }}" alt="">
 

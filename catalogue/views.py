@@ -1,10 +1,10 @@
 from typing import List
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView, CreateView
+from django.urls import reverse_lazy, reverse
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
 
-from .forms import CreateUserForm
-from .models import Album, Artist, Language, Genre, Band
+from .forms import CreateUserForm, ReviewForm
+from .models import Album, Artist, Language, Genre, Band, Profile, User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -28,9 +28,28 @@ def index(request):
 
     return render(request,'catalogue/index.html',context=context)
 
-class AlbumCreate(LoginRequiredMixin,CreateView):
-    model = Album
+
+class ArtistCreate(CreateView):
+    model = Artist
     fields = '__all__'
+
+class BandCreate(LoginRequiredMixin,CreateView):
+    model = Band
+    fields = '__all__'
+
+class GenreCreate(LoginRequiredMixin,CreateView):
+    model = Genre
+    fields = '__all__'
+
+class AlbumCreateArtist(LoginRequiredMixin,CreateView):
+    model = Album
+    template_name = 'catalogue/album_form_artist.html'
+    fields = ['name','author','genre','release_date','language','num_of_songs','price','image']
+
+class AlbumCreateBand(LoginRequiredMixin,CreateView):
+    model = Album
+    template_name = 'catalogue/album_form_band.html'
+    fields = ['name','band','genre','release_date','language','num_of_songs','price','image']
 
 class AlbumListView(ListView):
     model = Album
@@ -42,6 +61,11 @@ class BandListView(ListView):
     queryset = Band.objects.order_by('name')
     context_object_name = 'band_list'
 
+class ArtistListView(ListView):
+    model = Artist
+    queryset = Artist.objects.order_by('first_name')
+    context_object_name = 'artist_list'
+
 class AlbumDetail(DetailView):
     model = Album
 
@@ -50,6 +74,7 @@ class BandDetail(DetailView):
 
 class ArtistDetail(DetailView):
     model = Artist
+
 
 @login_required(login_url='login')
 def my_view(request):
@@ -94,3 +119,28 @@ def logoutUser(request):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
+@login_required
+def album_review(request, album_id):
+    user = request.user
+    album = Album.objects.get(id=album_id)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = user
+            review.album = album
+            review.save()
+            return redirect(reverse('catalogue:index'), args=[album_id])
+    
+    else:
+        form = ReviewForm()
+    
+    context = {
+        'form':form,
+        'album':album
+    }
+    
+    return render(request, 'catalogue/album_review.html',context=context)
