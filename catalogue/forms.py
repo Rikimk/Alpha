@@ -14,4 +14,4 @@ class CreateUserForm(UserCreationForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['album','comment','rate']
+        fields = ['comment','rate']

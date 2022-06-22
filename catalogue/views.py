@@ -121,8 +121,9 @@ def profile(request):
     return render(request, 'profile.html')
 
 @login_required
-def album_review(request):
+def album_review(request, album_id):
     user = request.user
+    album = Album.objects.get(id=album_id)
 
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -130,9 +131,16 @@ def album_review(request):
         if form.is_valid():
             review = form.save(commit=False)
             review.user = user
+            review.album = album
             review.save()
-            return redirect(reverse('catalogue:index'))
+            return redirect(reverse('catalogue:index'), args=[album_id])
     
     else:
         form = ReviewForm()
-    return render(request, 'catalogue/album_review.html',context={'form':form})
+    
+    context = {
+        'form':form,
+        'album':album
+    }
+    
+    return render(request, 'catalogue/album_review.html',context=context)
