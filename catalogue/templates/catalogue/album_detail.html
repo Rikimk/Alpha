@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/list_detail.css' %}">
 
 <h1>{{album}}</h1>
-    <a class="text-light" href="/catalogue/album_review/{{album.id}}">Review this Album</a>
+    <a class="text-light" href="/catalogue/album_review/">Review this Album</a>
         <img class='mx-auto d-block' height="50%" width="50%" src="{{ album.image.url }}" alt="">
 
 {% endblock %}

@@ -1,10 +1,10 @@
 from typing import List
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
 
-from .forms import CreateUserForm, RateForm
-from .models import Album, Artist, Language, Genre, Band, Profile
+from .forms import CreateUserForm, ReviewForm
+from .models import Album, Artist, Language, Genre, Band, Profile, User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -120,14 +120,19 @@ def logoutUser(request):
 def profile(request):
     return render(request, 'profile.html')
 
-def Rate(request, name):
-    album = Album.objects.get(name=Album.name)
+@login_required
+def album_review(request):
     user = request.user
 
     if request.method == 'POST':
-        form = RateForm(request.POST)
+        form = ReviewForm(request.POST)
+
         if form.is_valid():
-            rate = form.save(commit=False)
-            rate.user = user
-            rate.album = album
-            rate.save()
+            review = form.save(commit=False)
+            review.user = user
+            review.save()
+            return redirect(reverse('catalogue:index'))
+    
+    else:
+        form = ReviewForm()
+    return render(request, 'catalogue/album_review.html',context={'form':form})

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/review.css' %}">
+
+<h1>Welcome to the Review Page</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="d-flex mx-auto justify-content-center" type="submit">
+</form>
+
+{% endblock %}

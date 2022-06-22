@@ -11,10 +11,7 @@ class CreateUserForm(UserCreationForm):
         model = User
         fields = ['username','email','password1','password2']
 
-class RateForm(ModelForm):
-    text = forms.CharField(widget=forms.Textarea(attrs={'class': 'materialize-textarea'}), required=False)
-    rate = forms.ChoiceField(choices=RATE_CHOICES, widget=forms.Select(), required=True)
-
+class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ('text', 'rate')
+        fields = ['album','comment','rate']
