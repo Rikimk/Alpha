@@ -77,13 +77,8 @@ WSGI_APPLICATION = 'alpha.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'alphasql',
-        'USER': 'linroot',
-        'PASSWORD': '!4oid1HzTvGZpR2a',
-        'HOST': 'lin-2720-2808-mysql-primary.servers.linodedb.net',
-        'PORT': '3306',
-        'OPTIONS': {'ssl': {'ssl-ca': 'alpha-db-ca-certificate.crt'}},
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
