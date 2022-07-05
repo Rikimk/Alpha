@@ -118,7 +118,11 @@ def logoutUser(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    profile = Profile.objects.all()
+    context = {
+        'profile': profile,
+        }
+    return render(request, 'profile.html', context)
 
 @login_required
 def album_review(request, album_id):
