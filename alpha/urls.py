@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.views.generic import RedirectView
-from catalogue.views import loginPage, logoutUser, registerPage, homePage, profile
+from catalogue.views import loginPage, logoutUser, registerPage, homePage, profile, update
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,6 +28,7 @@ urlpatterns = [
     path('login/',loginPage, name='login'),
     path('logout/',logoutUser, name='logout'),
     path('accounts/profile/', profile, name='profile'),
+    path('accounts/edit_profile/', update, name='edit_profile'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

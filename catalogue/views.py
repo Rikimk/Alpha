@@ -3,12 +3,12 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
 
-from .forms import CreateUserForm, ReviewForm
+from .forms import CreateUserForm, ReviewForm, ProfileUpdateForm, UserUpdateForm
 from .models import Album, Artist, Language, Genre, Band, Profile, User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib import messages
 from .decorators import unauthenticated_user
 
@@ -118,11 +118,8 @@ def logoutUser(request):
 
 @login_required
 def profile(request):
-    profile = Profile.objects.all()
-    context = {
-        'profile': profile,
-        }
-    return render(request, 'profile.html', context)
+    
+    return render(request, 'profile.html')
 
 @login_required
 def album_review(request, album_id):
@@ -148,3 +145,23 @@ def album_review(request, album_id):
     }
     
     return render(request, 'catalogue/album_review.html',context=context)
+
+@login_required
+def update(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES ,instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, 'You account info has been updated')
+            return redirect('profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+    context = {
+        'u_form': u_form,
+        "p_form": p_form
+    }
+
+    return render(request, 'edit_profile.html', context)
