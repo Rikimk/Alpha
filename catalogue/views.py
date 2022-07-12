@@ -2,7 +2,6 @@ from typing import List
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
-
 from .forms import CreateUserForm, ReviewForm, ProfileUpdateForm, UserUpdateForm
 from .models import Album, Artist, Language, Genre, Band, Profile, User
 from django.contrib.auth import authenticate, login, logout
@@ -11,6 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib import messages
 from .decorators import unauthenticated_user
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 
 # Create your views here.
 @unauthenticated_user
@@ -165,3 +166,10 @@ def update(request):
     }
 
     return render(request, 'edit_profile.html', context)
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('password_success')
+
+def password_success(request):
+    return render(request, 'registration/password_success.html')

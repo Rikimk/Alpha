@@ -19,6 +19,8 @@ from django.views.generic import RedirectView
 from catalogue.views import loginPage, logoutUser, registerPage, homePage, profile, update
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import PasswordChangeView
+from catalogue import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +31,8 @@ urlpatterns = [
     path('logout/',logoutUser, name='logout'),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/edit_profile/', update, name='edit_profile'),
+    path('accounts/password_change', views.PasswordsChangeView.as_view(template_name='registration/password_change.html'),name='password_change'),
+    path('password_success', views.password_success, name='password_success'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
