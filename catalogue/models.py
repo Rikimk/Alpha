@@ -1,5 +1,4 @@
 from email.policy import default
-from tkinter import E
 from unicodedata import name
 from django.db import models
 from django.urls import reverse
